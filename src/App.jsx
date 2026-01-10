@@ -18,7 +18,7 @@ const ThemeToggle = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="fixed top-6 right-6 z-50 p-3 bg-white dark:bg-gray-950 border-2 border-gray-200 dark:border-gray-800 rounded-full hover:shadow-lg transition-shadow"
+      className="fixed bottom-8 right-8 z-50 p-3 sm:p-3.5 bg-white dark:bg-gray-950 border-2 border-gray-200 dark:border-gray-800 rounded-full hover:border-black dark:hover:border-white hover:shadow-xl transition-all shadow-lg hover:scale-110 active:scale-95"
       aria-label="Toggle theme"
     >
       {isDark ? <Sun size={20} /> : <Moon size={20} />}
@@ -61,7 +61,7 @@ const AppContent = () => {
         <Certificates />
         <Contact />
         <Footer />
-        <FloatingDock items={navItems} />
+        <ThemeToggle />
       </div>
     </LoadingScreen>
   );

@@ -67,18 +67,18 @@ export const About = () => {
   ];
 
   const technicalSkills = [
-    { name: "React", icon: SiReact, color: "#ffffff" },
-    { name: "JavaScript", icon: SiJavascript, color: "#ffffff" },
-    { name: "HTML5", icon: SiHtml5, color: "#ffffff" },
-    { name: "CSS3", icon: SiCss3, color: "#ffffff" },
-    { name: "Tailwind CSS", icon: SiTailwindcss, color: "#ffffff" },
-    { name: "MySQL", icon: SiMysql, color: "#ffffff" },
-    { name: "Vite", icon: SiVite, color: "#ffffff" },
-    { name: "GitHub", icon: SiGithub, color: "#ffffff" },
-    { name: "Git", icon: SiGit, color: "#ffffff" },
-    { name: "Figma", icon: SiFigma, color: "#ffffff" },
-    { name: "Photoshop", icon: SiAdobephotoshop, color: "#ffffff" },
-    { name: "Premiere Pro", icon: SiAdobepremierepro, color: "#ffffff" },
+    { name: "React", icon: SiReact, color: "#0099ff" },
+    { name: "JavaScript", icon: SiJavascript, color: "#f7df1e" },
+    { name: "HTML5", icon: SiHtml5, color: "#e34f26" },
+    { name: "CSS3", icon: SiCss3, color: "#1572b6" },
+    { name: "Tailwind CSS", icon: SiTailwindcss, color: "#38b2ac" },
+    { name: "MySQL", icon: SiMysql, color: "#4479a1" },
+    { name: "Vite", icon: SiVite, color: "#8824ca" },
+    { name: "GitHub", icon: SiGithub, color: "#4b4242" },
+    { name: "Git", icon: SiGit, color: "#fc6602" },
+    { name: "Figma", icon: SiFigma, color: "#c35dff" },
+    { name: "Photoshop", icon: SiAdobephotoshop, color: "#034acc" },
+    { name: "Premiere Pro", icon: SiAdobepremierepro, color: "#8146b9" },
 
   ];
 

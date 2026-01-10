@@ -4,7 +4,7 @@ import { SiFigma, SiAdobephotoshop, SiHtml5, SiCss3, SiJavascript, SiReact, SiNo
 
 const OrbitingIcons = () => {
   const floatingIcons = [
-    { Icon: SiFigma, color: '#F24E1E', top: '15%', left: '10%', delay: 0, duration: 20, hideOnMobile: false },
+    { Icon: SiFigma, color: '#c35dff', top: '15%', left: '10%', delay: 0, duration: 20, hideOnMobile: false },
     { Icon: SiReact, color: '#61DAFB', top: '25%', left: '85%', delay: 2, duration: 25, hideOnMobile: false },
     { Icon: SiJavascript, color: '#F7DF1E', top: '70%', left: '12%', delay: 4, duration: 22, hideOnMobile: true },
     { Icon: SiTailwindcss, color: '#06B6D4', top: '80%', left: '80%', delay: 1, duration: 28, hideOnMobile: true },
@@ -53,7 +53,7 @@ const OrbitingIcons = () => {
           x: { duration: 25, repeat: Infinity, delay: 1.5, ease: "easeInOut" },
         }}
       >
-        <SiFigma size={24} style={{ color: '#F24E1E' }} />
+        <SiFigma size={24} style={{ color: '#c35dff' }} />
       </motion.div>
 
       <motion.div

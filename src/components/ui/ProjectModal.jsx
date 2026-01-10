@@ -107,8 +107,8 @@ export const ProjectModal = ({ project, isOpen, onClose }) => {
                                 onClick={() => setCurrentImageIndex(index)}
                                 className={`w-2 h-2 rounded-full transition-all ${
                                   index === currentImageIndex
-                                    ? 'bg-white dark:bg-white w-6'
-                                    : 'bg-white/50 dark:bg-gray-600'
+                                    ? 'bg-gray-900 dark:bg-white w-6'
+                                    : 'bg-gray-400 dark:bg-gray-600'
                                 }`}
                                 aria-label={`Go to image ${index + 1}`}
                               />

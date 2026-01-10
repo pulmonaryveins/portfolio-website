@@ -56,10 +56,10 @@ export const DesignModal = ({ design, isOpen, onClose }) => {
             {/* Close button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-10 p-2 bg-black/20 hover:bg-black/40 dark:bg-white/20 dark:hover:bg-white/40 rounded-full transition-colors"
+              className="absolute top-4 right-4 z-10 p-2 bg-white/90 dark:bg-gray-950/90 backdrop-blur-sm border border-gray-200 dark:border-gray-800 rounded-full hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
               aria-label="Close modal"
             >
-              <X size={24} className="text-white" />
+              <X size={24} className="text-gray-900 dark:text-white" />
             </button>
 
             {/* Content */}
@@ -107,7 +107,7 @@ export const DesignModal = ({ design, isOpen, onClose }) => {
                           onClick={() => setCurrentImageIndex(index)}
                           className={`w-2 h-2 rounded-full transition-all ${
                             index === currentImageIndex
-                              ? 'bg-black dark:bg-white w-6'
+                              ? 'bg-gray-900 dark:bg-white w-6'
                               : 'bg-gray-400 dark:bg-gray-600'
                           }`}
                           aria-label={`Go to image ${index + 1}`}
