@@ -50,9 +50,9 @@ export const Design = () => {
     },
 
     {
-      title: "Motivational Poster",
+      title: "Chrsitmas Poster",
       description: "",
-      image: "/images/design/8.png",
+      image: "/images/design/21.png",
       tools: ["Abobe Photoshop"],
       category: "Graphic Design"
     },
@@ -109,6 +109,14 @@ export const Design = () => {
       title: "C-SEC WORKSHOP",
       description: "",
       image: "/images/design/10.png",
+      tools: ["Photoshop"],
+      category: "Graphic Design"
+    },
+
+    {
+      title: "Motiviational Poster",
+      description: "",
+      image: "/images/design/8.png",
       tools: ["Photoshop"],
       category: "Graphic Design"
     },
