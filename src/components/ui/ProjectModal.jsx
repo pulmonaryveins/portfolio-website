@@ -72,13 +72,13 @@ export const ProjectModal = ({ project, isOpen, onClose }) => {
                 </button>
 
                 {/* Image Gallery */}
-                <div className="relative h-64 sm:h-96 bg-gray-100 dark:bg-gray-900">
+                <div className="relative w-full aspect-[3/2] bg-gray-100 dark:bg-gray-900">
                   {project.images && project.images.length > 0 ? (
                     <>
                       <img
                         src={project.images[currentImageIndex]}
                         alt={`${project.title} - Image ${currentImageIndex + 1}`}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                       />
                       
                       {/* Image Navigation */}

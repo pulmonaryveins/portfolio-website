@@ -27,31 +27,25 @@ export const Contact = () => {
     { 
       name: 'GitHub', 
       icon: Github, 
-      url: 'https://github.com/yourusername',
+      url: 'https://github.com/pulmonaryveins',
       color: 'hover:bg-gray-800 dark:hover:bg-gray-200'
     },
     { 
       name: 'LinkedIn', 
       icon: Linkedin, 
-      url: 'https://linkedin.com/in/yourusername',
+      url: 'https://www.linkedin.com/in/vince-bryant-cabunilas-366704346/',
       color: 'hover:bg-blue-600'
     },
     { 
       name: 'Facebook', 
       icon: Facebook, 
-      url: 'https://instagram.com/yourusername',
+      url: 'https://www.facebook.com/vincebryant.cabunilas',
       color: 'hover:bg-pink-600'
-    },
-    { 
-      name: 'Portfolio', 
-      icon: Globe, 
-      url: 'https://yourwebsite.com',
-      color: 'hover:bg-purple-600'
     }
   ];
 
   return (
-    <section id="contact" className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 pb-32">
+    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 pb-32">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

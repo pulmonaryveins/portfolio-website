@@ -90,21 +90,21 @@ export const About = () => {
   ];
 
   return (
-    <section id="about" className="min-h-screen py-24 px-4 sm:px-6 lg:px-8">
+    <section id="about" className="min-h-screen py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4">About Me</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">About Me</h2>
           <div className="w-20 h-1 bg-black dark:bg-white mx-auto"></div>
         </motion.div>
 
         {/* Two Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 mb-12 sm:mb-16 lg:mb-20">
           {/* Left Column - Profile Photo */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}

@@ -19,7 +19,7 @@ export const FloatingDock = ({ items = [], className = "" }) => {
   
   return (
     <div className={cn("fixed top-0 left-0 right-0 z-50", className)}>
-      <div className="pt-2 sm:pt-3 px-2 sm:px-4">
+      <div className="pt-4 sm:pt-6 px-2 sm:px-4">
         <motion.div
           className={cn(
             "max-w-fit mx-auto flex items-center justify-center",

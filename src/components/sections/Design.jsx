@@ -19,59 +19,162 @@ const itemVariants = {
 
 export const Design = () => {
   const [selectedDesign, setSelectedDesign] = useState(null);
-  const [selectedFilter, setSelectedFilter] = useState('All');
+  const [showAll, setShowAll] = useState(false);
 
   const designs = [
     {
-      title: "Brand Identity Design",
-      description: "Complete brand identity including logo, color palette, and style guide for a tech startup.",
-      image: "/images/design/brand-identity.jpg",
-      tools: ["Figma", "Adobe Illustrator", "Photoshop"],
+      title: "Dexter Poster",
+      description: "",
+      image: "/images/design/9.png",
+      images: [
+        "/images/design/9.png"
+      ],
+        tools: ["Abobe Photoshop", "Canva"],
       category: "Graphic Design"
     },
+    
     {
-      title: "Mobile App UI/UX",
-      description: "User interface design for a fitness tracking mobile application with focus on engagement.",
-      image: "/images/design/mobile-app-ui.jpg",
-      tools: ["Figma", "Adobe XD", "Principle"],
-      category: "UI/UX Design"
-    },
-    {
-      title: "Portfolio Website Design",
-      description: "Modern portfolio design with minimalism and smooth animations for creative professionals.",
-      image: "/images/design/portfolio-design.jpg",
-      tools: ["Figma", "Adobe XD", "ProtoPie"],
-      category: "UI/UX Design"
-    },
-    {
-      title: "E-commerce Landing Page",
-      description: "Conversion-focused landing page design with clean product showcase and checkout flow.",
-      image: "/images/design/ecommerce-landing.jpg",
-      tools: ["Figma", "Adobe Photoshop"],
-      category: "UI/UX Design"
-    },
-    {
-      title: "Dashboard UI Design",
-      description: "Analytics dashboard with data visualization and intuitive navigation for SaaS platform.",
-      image: "/images/design/dashboard-ui.jpg",
-      tools: ["Figma", "Adobe XD"],
-      category: "UI/UX Design"
-    },
-    {
-      title: "Social Media Graphics",
-      description: "Cohesive social media templates and graphics for brand consistency across platforms.",
-      image: "/images/design/social-media.jpg",
-      tools: ["Figma", "Canva", "Adobe Illustrator"],
+      title: "Film Poster",
+      description: "",
+      image: "/images/design/15.png",
+      tools: ["Abobe Photoshop" , "Canva"],
       category: "Graphic Design"
-    }
+    },
+
+    {
+      title: "Bermonths Poster",
+      description: "",
+      image: "/images/design/14.png",
+      tools: ["Abobe Photoshop" , "Canva"],
+      category: "Graphic Design"
+    },
+
+    {
+      title: "Motivational Poster",
+      description: "",
+      image: "/images/design/8.png",
+      tools: ["Abobe Photoshop"],
+      category: "Graphic Design"
+    },
+
+    {
+      title: "All Souls' Day Poster",
+      description: "",
+      image: "/images/design/5.png",
+      tools: ["Abobe Photoshop" , "Canva"],
+      category: "Graphic Design"
+    },
+
+    {
+      title: "Fathers' Day Poster",
+      description: "",
+      image: "/images/design/11.png",
+      tools: ["Abobe Photoshop" , "Canva"],
+      category: "Graphic Design"
+    },
+
+    {
+      title: "Good Friday Poster",
+      description: "",
+      image: "/images/design/12.png",
+      tools: ["Abobe Photoshop" , "Canva"],
+      category: "Graphic Design"
+    },
+
+    {
+      title: "Extragavaganza 2023",
+      description: "",
+      image: "/images/design/7.png",
+      tools: ["Canva"],
+      category: "Graphic Design"
+    },
+
+    {
+      title: "Cesafi S3 Poster",
+      description: "",
+      image: "/images/design/13.png",
+      tools: ["Abobe Photoshop"],
+      category: "Graphic Design"
+    },
+
+    {
+      title: "Cesafi S3 Group Standings",
+      description: "",
+      image: "/images/design/6.png",
+      tools: ["Abobe Photoshop"],
+      category: "Graphic Design"
+    },
+
+    {
+      title: "C-SEC WORKSHOP",
+      description: "",
+      image: "/images/design/10.png",
+      tools: ["Photoshop"],
+      category: "Graphic Design"
+    },
+
+    {
+      title: "Cesafi Pre-Season Poster",
+      description: "",
+      image: "/images/design/4.png",
+      tools: ["Photoshop"],
+      category: "Graphic Design"
+    },
+
+    {
+      title: "Face of UC-Main Poster",
+      description: "",
+      image: "/images/design/2.png",
+      tools: ["Photoshop"],
+      category: "Graphic Design"
+    },
+
+    {
+      title: "Extragavaganza 2025",
+      description: "",
+      image: "/images/design/1.png",
+      tools: [ "Photoshop", "Canva"],
+      category: "Graphic Design"
+    },
+
+    {
+      title: "PSITS Recruitment",
+      description: "",
+      image: "/images/design/3.png",
+      tools: ["Photoshop"],
+      category: "Graphic Design"
+    },
+
+    {
+      title: "Intrams T-Shirt Design",
+      description: "",
+      image: "/images/design/16.png",
+      tools: ["Adobe Illustrator", "Photoshop"],
+      category: "Graphic Design"
+    },
+
+    {
+      title: "T-shirt Merchandise Design",
+      description: "",
+      image: "/images/design/17.png",
+      tools: ["Adobe Illustrator", "Photoshop"],
+      category: "Graphic Design"
+    },
+
+    {
+      title: "Polo Shirt Design",
+      description: "",
+      image: "/images/design/18.png",
+      tools: ["Photoshop"],
+      category: "Graphic Design"
+    },
+    
   ];
 
-  const filteredDesigns = selectedFilter === 'All' 
-    ? designs 
-    : designs.filter(design => design.category === selectedFilter);
+  const displayedDesigns = showAll ? designs : designs.slice(0, 6);
 
   return (
-    <section id="design" className="min-h-screen py-20 px-4 sm:px-6 lg:px-8">
+    <section id="design" className="min-h-screen py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -79,35 +182,19 @@ export const Design = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-center">Design Work</h2>
-          <div className="w-20 h-1 bg-black dark:bg-white mx-auto mb-8"></div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-center">Design Work</h2>
+          <div className="w-20 h-1 bg-black dark:bg-white mx-auto mb-8 sm:mb-12"></div>
         </motion.div>
-
-        {/* Filter Tabs */}
-        <div className="flex justify-center gap-4 mb-12">
-          {['All', 'UI/UX Design', 'Graphic Design'].map((filter) => (
-            <button
-              key={filter}
-              onClick={() => setSelectedFilter(filter)}
-              className={`px-6 py-2 rounded-full font-medium transition-all ${
-                selectedFilter === filter
-                  ? 'bg-black dark:bg-white text-white dark:text-black'
-                  : 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700'
-              }`}
-            >
-              {filter}
-            </button>
-          ))}
-        </div>
 
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          key={showAll ? 'all' : 'limited'}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
         >
-          {filteredDesigns.map((design, index) => (
+          {displayedDesigns.map((design, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
@@ -154,6 +241,39 @@ export const Design = () => {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Show More Button */}
+        {designs.length > 6 && !showAll && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex justify-center mt-12"
+          >
+            <button
+              onClick={() => setShowAll(true)}
+              className="px-8 py-3 bg-black dark:bg-white text-white dark:text-black rounded-full font-medium hover:bg-gray-800 dark:hover:bg-gray-200 transition-all hover:scale-105 active:scale-95"
+            >
+              Show More
+            </button>
+          </motion.div>
+        )}
+
+        {/* Show Less Button */}
+        {showAll && designs.length > 6 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex justify-center mt-12"
+          >
+            <button
+              onClick={() => setShowAll(false)}
+              className="px-8 py-3 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full font-medium hover:bg-gray-300 dark:hover:bg-gray-700 transition-all hover:scale-105 active:scale-95"
+            >
+              Show Less
+            </button>
+          </motion.div>
+        )}
       </div>
 
       {/* Design Modal */}

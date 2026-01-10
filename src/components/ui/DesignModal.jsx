@@ -1,8 +1,10 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
-import { useEffect } from 'react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 export const DesignModal = ({ design, isOpen, onClose }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === 'Escape') onClose();
@@ -11,6 +13,7 @@ export const DesignModal = ({ design, isOpen, onClose }) => {
     if (isOpen) {
       document.addEventListener('keydown', handleEscape);
       document.body.style.overflow = 'hidden';
+      setCurrentImageIndex(0); // Reset to first image when modal opens
     }
 
     return () => {
@@ -20,6 +23,17 @@ export const DesignModal = ({ design, isOpen, onClose }) => {
   }, [isOpen, onClose]);
 
   if (!design) return null;
+
+  const images = design.images || [design.image];
+  const hasMultipleImages = images.length > 1;
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
 
   return (
     <AnimatePresence>
@@ -51,10 +65,10 @@ export const DesignModal = ({ design, isOpen, onClose }) => {
             {/* Content */}
             <div className="flex flex-col lg:flex-row max-h-[90vh] overflow-auto">
               {/* Image Section */}
-              <div className="lg:w-2/3 bg-gray-100 dark:bg-gray-900 flex items-center justify-center p-8">
+              <div className="lg:w-2/3 bg-gray-100 dark:bg-gray-900 flex items-center justify-center p-8 relative">
                 <img
-                  src={design.image}
-                  alt={design.title}
+                  src={images[currentImageIndex]}
+                  alt={`${design.title} - Image ${currentImageIndex + 1}`}
                   className="w-full h-auto max-h-[70vh] object-contain rounded-lg"
                   onError={(e) => {
                     e.target.style.display = 'none';
@@ -66,6 +80,42 @@ export const DesignModal = ({ design, isOpen, onClose }) => {
                     <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
                   </svg>
                 </div>
+
+                {/* Image Navigation Arrows */}
+                {hasMultipleImages && (
+                  <>
+                    <button
+                      onClick={prevImage}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-white/90 dark:bg-gray-950/90 backdrop-blur-sm border border-gray-200 dark:border-gray-800 rounded-full hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
+                      aria-label="Previous image"
+                    >
+                      <ChevronLeft size={20} />
+                    </button>
+                    <button
+                      onClick={nextImage}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-white/90 dark:bg-gray-950/90 backdrop-blur-sm border border-gray-200 dark:border-gray-800 rounded-full hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
+                      aria-label="Next image"
+                    >
+                      <ChevronRight size={20} />
+                    </button>
+
+                    {/* Image Indicators */}
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                      {images.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentImageIndex(index)}
+                          className={`w-2 h-2 rounded-full transition-all ${
+                            index === currentImageIndex
+                              ? 'bg-black dark:bg-white w-6'
+                              : 'bg-gray-400 dark:bg-gray-600'
+                          }`}
+                          aria-label={`Go to image ${index + 1}`}
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
               </div>
 
               {/* Details Section */}

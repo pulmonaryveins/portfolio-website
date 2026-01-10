@@ -28,11 +28,23 @@ export const Projects = () => {
       category: "Development",
       description: "An intuitive platform for browsing and ordering authentic local Filipino dishes with modern design.",
       fullDescription: "Lamoy is a comprehensive food ordering system designed to bring Filipino cuisine to customers through an intuitive digital platform. As UI/UX Designer & Frontend Developer, I created user-friendly interfaces and implemented responsive frontend components using modern web technologies. The platform features seamless order management, real-time menu updates, and an optimized user experience focused on making Filipino food accessible and easy to order.",
-      image: "/images/projects/lamoy-1.jpg",
+      image: "/images/projects/1.png",
       images: [
-        "/images/projects/lamoy-1.jpg",
-        "/images/projects/lamoy-2.jpg",
-        "/images/projects/lamoy-3.jpg"
+        "/images/projects/6.png",
+        "/images/projects/7.png",
+        "/images/projects/8.png",
+        "/images/projects/9.png",
+        "/images/projects/10.png",
+        "/images/projects/11.png",
+        "/images/projects/12.png",
+        "/images/projects/13.png",
+        "/images/projects/14.png",
+        "/images/projects/15.png",
+        "/images/projects/16.png",
+        "/images/projects/17.png",
+        "/images/projects/18.png",
+        "/images/projects/19.png",
+        "/images/projects/20.png",
       ],
       technologies: ["React", "Tailwind CSS", "NeonDB", "ASP.NET", "Figma"],
       features: [
@@ -44,19 +56,18 @@ export const Projects = () => {
         "Admin dashboard for menu and order management",
         "Optimized frontend performance"
       ],
-      github: "https://github.com/yourusername/lamoy",
-      demo: "https://lamoy-demo.example.com"
+      github: "https://github.com/CryoYohan/Lamoy-Simple-Food-Ordering-System",
+      demo: ""
     },
     {
       title: "OrgaFlow – Event Management System",
       category: "Development",
       description: "Integrated platform for event planning and management designed for student organizations.",
       fullDescription: "OrgaFlow is a comprehensive event management system developed as a capstone project to streamline event coordination in student organizations. As UI/UX Designer & Frontend Developer, I designed clean, interactive interfaces that simplify event planning, task tracking, and team communication. The platform integrates all aspects of event management into one cohesive system, making it easier for student organizations to plan, execute, and track their events efficiently.",
-      image: "/images/projects/orgaflow-1.jpg",
+      image: "/images/projects/2.png",
       images: [
-        "/images/projects/orgaflow-1.jpg",
-        "/images/projects/orgaflow-2.jpg",
-        "/images/projects/orgaflow-3.jpg"
+        "/images/projects/2.png"
+        
       ],
       technologies: ["Laravel", "MySQL", "Tailwind CSS", "Blaze", "Figma"],
       features: [
@@ -69,18 +80,19 @@ export const Projects = () => {
         "Role-based access control",
         "Analytics and reporting dashboard"
       ],
-      github: "https://github.com/yourusername/orgaflow",
-      demo: "https://orgaflow-demo.example.com"
+      github: "https://github.com/Just-tine-44/orgaflow",
+      demo: ""
     },
     {
       title: "OJT Tracker – Mobile Application",
       category: "Development",
       description: "Personal project to track student internship hours and generate exportable reports efficiently.",
       fullDescription: "OJT Tracker is a mobile application designed to help students accurately track their internship hours and maintain comprehensive records. This personal project focuses on solving the common problem of manual hour tracking by providing a user-friendly mobile interface for easy logging and management of internship data. The app includes features for generating exportable reports, making it simple for students to submit their required documentation while improving efficiency and accuracy in record-keeping.",
-      image: "/images/projects/ojt-tracker-1.jpg",
+      image: "/images/projects/3.png",
       images: [
-        "/images/projects/ojt-tracker-1.jpg",
-        "/images/projects/ojt-tracker-2.jpg"
+        "/images/projects/4.png",
+         "/images/projects/5.png"
+        
       ],
       technologies: ["React Native", "TypeScript", "Tailwind CSS", "Supabase"],
       features: [
@@ -93,8 +105,8 @@ export const Projects = () => {
         "Offline mode with sync capability",
         "Data backup and cloud storage"
       ],
-      github: "https://github.com/yourusername/ojt-tracker",
-      demo: "https://ojt-tracker-demo.example.com"
+      github: "https://github.com/pulmonaryveins/ojt-tracker-mobile",
+      demo: ""
     },
     {
       title: "Brand Identity Design",
@@ -173,7 +185,7 @@ export const Projects = () => {
   };
 
   return (
-    <section id="projects" className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
+    <section id="projects" className="min-h-screen py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -181,8 +193,8 @@ export const Projects = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-center">Development Projects</h2>
-          <div className="w-20 h-1 bg-black dark:bg-white mx-auto mb-12"></div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-center">Development Projects</h2>
+          <div className="w-20 h-1 bg-black dark:bg-white mx-auto mb-8 sm:mb-12"></div>
         </motion.div>
 
         <motion.div
@@ -190,7 +202,7 @@ export const Projects = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8"
         >
           {projects.map((project, index) => (
             <motion.div
@@ -200,11 +212,11 @@ export const Projects = () => {
               className="bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden hover:shadow-xl transition-all group cursor-pointer"
               onClick={() => handleProjectClick(project)}
             >
-              <div className="relative overflow-hidden h-48">
+              <div className="relative overflow-hidden aspect-[3/2] bg-gray-100 dark:bg-gray-900">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                 />
                 {/* Category Badge */}
                 <div className="absolute top-4 right-4">
@@ -219,8 +231,8 @@ export const Projects = () => {
                   </span>
                 </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-2xl font-semibold mb-2 group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-colors">{project.title}</h3>
+              <div className="p-4 sm:p-6">
+                <h3 className="text-xl sm:text-2xl font-semibold mb-2 group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-colors">{project.title}</h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">{project.description}</p>
                 
                 <div className="flex flex-wrap gap-2 mb-4">
