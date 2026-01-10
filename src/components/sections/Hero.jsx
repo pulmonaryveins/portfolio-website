@@ -114,8 +114,9 @@ export const Hero = () => {
             Get in Touch
           </a>
           <a
-            href="/public/CABUNILAS-RESUME.pdf"
-            download
+            href="/CABUNILAS-RESUME.pdf"
+            download="CABUNILAS-RESUME.pdf"
+            type="application/pdf"
             className="px-6 sm:px-8 py-3 border-2 border-black dark:border-white text-black dark:text-white rounded-lg font-medium hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors flex items-center gap-2 text-sm sm:text-base min-h-[44px]"
           >
             <Download size={20} />
