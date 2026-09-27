@@ -2,6 +2,9 @@ import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone, Github, Linkedin, Facebook } from 'lucide-react';
 import { site, mailtoHref } from '@/config/site';
 import type { IconComponent } from '@/types/content';
+import { Container } from '@/components/ui/Container';
+import { Section } from '@/components/ui/Section';
+import { SectionHeading } from '@/components/ui/SectionHeading';
 
 interface ContactInfoItem {
   icon: IconComponent;
@@ -31,16 +34,17 @@ export const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 pb-32">
-      <div className="max-w-4xl mx-auto">
+    <Section id="contact" className="py-20 pb-32">
+      <Container size="content">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-center">Get in Touch</h2>
-          <div className="w-20 h-1 bg-black dark:bg-white mx-auto mb-6"></div>
+          <SectionHeading className="mb-6">
+            Get in Touch
+          </SectionHeading>
           <p className="text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-16">
             I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
           </p>
@@ -108,7 +112,7 @@ export const Contact = () => {
             })}
           </div>
         </motion.div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 };

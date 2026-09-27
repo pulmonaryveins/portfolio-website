@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Github, Linkedin, Mail, Download } from 'lucide-react';
 import { SiFigma, SiAdobephotoshop, SiHtml5, SiCss3, SiJavascript, SiReact, SiTailwindcss, SiGithub } from 'react-icons/si';
 import { site, mailtoHref } from '@/config/site';
@@ -14,7 +14,16 @@ interface FloatingIcon {
   hideOnMobile: boolean;
 }
 
+/**
+ * Rest state used for every orbiting icon when `prefers-reduced-motion` is
+ * on: fully visible, natural size, no offset — "intended static position"
+ * per Phase 1 Task 03, rather than freezing at the animation's `initial`
+ * (which would leave several icons stuck invisible at scale 0).
+ */
+const REDUCED_MOTION_ICON_STATE = { opacity: 0.5, scale: 1 };
+
 const OrbitingIcons = () => {
+  const shouldReduceMotion = useReducedMotion();
   const floatingIcons: FloatingIcon[] = [
     { Icon: SiFigma, color: '#c35dff', top: '15%', left: '10%', delay: 0, duration: 20, hideOnMobile: false },
     { Icon: SiReact, color: '#61DAFB', top: '25%', left: '85%', delay: 2, duration: 25, hideOnMobile: false },
@@ -34,17 +43,25 @@ const OrbitingIcons = () => {
           key={index}
           className={`absolute w-10 h-10 md:w-16 md:h-16 flex items-center justify-center rounded-xl bg-white/5 dark:bg-white/5 backdrop-blur-sm border border-white/10 ${hideOnMobile ? 'hidden md:flex' : ''}`}
           style={{ top, left }}
-          initial={{ opacity: 0, scale: 0, y: 0 }}
-          animate={{
-            opacity: [0.3, 0.7, 0.3],
-            scale: [0.9, 1.1, 0.9],
-            y: [0, -30, 0],
-          }}
-          transition={{
-            opacity: { duration: 4, repeat: Infinity, delay },
-            scale: { duration: 4, repeat: Infinity, delay },
-            y: { duration, repeat: Infinity, delay, ease: 'easeInOut' },
-          }}
+          initial={shouldReduceMotion ? { ...REDUCED_MOTION_ICON_STATE, y: 0 } : { opacity: 0, scale: 0, y: 0 }}
+          animate={
+            shouldReduceMotion
+              ? { ...REDUCED_MOTION_ICON_STATE, y: 0 }
+              : {
+                  opacity: [0.3, 0.7, 0.3],
+                  scale: [0.9, 1.1, 0.9],
+                  y: [0, -30, 0],
+                }
+          }
+          transition={
+            shouldReduceMotion
+              ? { duration: 0 }
+              : {
+                  opacity: { duration: 4, repeat: Infinity, delay },
+                  scale: { duration: 4, repeat: Infinity, delay },
+                  y: { duration, repeat: Infinity, delay, ease: 'easeInOut' },
+                }
+          }
         >
           <Icon size={28} className="md:w-8 md:h-8" style={{ color }} />
         </motion.div>
@@ -54,16 +71,24 @@ const OrbitingIcons = () => {
       <motion.div
         className="absolute w-10 h-10 md:w-12 md:h-12 hidden md:flex items-center justify-center rounded-xl bg-white/5 dark:bg-white/5 backdrop-blur-sm border border-white/10"
         style={{ top: '45%', left: '92%' }}
-        animate={{
-          opacity: [0.3, 0.7, 0.3],
-          scale: [0.9, 1.1, 0.9],
-          x: [0, -20, 0],
-        }}
-        transition={{
-          opacity: { duration: 4, repeat: Infinity, delay: 1.5 },
-          scale: { duration: 4, repeat: Infinity, delay: 1.5 },
-          x: { duration: 25, repeat: Infinity, delay: 1.5, ease: 'easeInOut' },
-        }}
+        animate={
+          shouldReduceMotion
+            ? { ...REDUCED_MOTION_ICON_STATE, x: 0 }
+            : {
+                opacity: [0.3, 0.7, 0.3],
+                scale: [0.9, 1.1, 0.9],
+                x: [0, -20, 0],
+              }
+        }
+        transition={
+          shouldReduceMotion
+            ? { duration: 0 }
+            : {
+                opacity: { duration: 4, repeat: Infinity, delay: 1.5 },
+                scale: { duration: 4, repeat: Infinity, delay: 1.5 },
+                x: { duration: 25, repeat: Infinity, delay: 1.5, ease: 'easeInOut' },
+              }
+        }
       >
         <SiFigma size={24} style={{ color: '#c35dff' }} />
       </motion.div>
@@ -71,16 +96,24 @@ const OrbitingIcons = () => {
       <motion.div
         className="absolute w-10 h-10 md:w-12 md:h-12 hidden md:flex items-center justify-center rounded-xl bg-white/5 dark:bg-white/5 backdrop-blur-sm border border-white/10"
         style={{ top: '50%', left: '3%' }}
-        animate={{
-          opacity: [0.3, 0.7, 0.3],
-          scale: [0.9, 1.1, 0.9],
-          y: [0, 30, 0],
-        }}
-        transition={{
-          opacity: { duration: 4, repeat: Infinity, delay: 3 },
-          scale: { duration: 4, repeat: Infinity, delay: 3 },
-          y: { duration: 24, repeat: Infinity, delay: 3, ease: 'easeInOut' },
-        }}
+        animate={
+          shouldReduceMotion
+            ? { ...REDUCED_MOTION_ICON_STATE, y: 0 }
+            : {
+                opacity: [0.3, 0.7, 0.3],
+                scale: [0.9, 1.1, 0.9],
+                y: [0, 30, 0],
+              }
+        }
+        transition={
+          shouldReduceMotion
+            ? { duration: 0 }
+            : {
+                opacity: { duration: 4, repeat: Infinity, delay: 3 },
+                scale: { duration: 4, repeat: Infinity, delay: 3 },
+                y: { duration: 24, repeat: Infinity, delay: 3, ease: 'easeInOut' },
+              }
+        }
       >
         <SiReact size={24} style={{ color: '#61DAFB' }} />
       </motion.div>

@@ -2,35 +2,19 @@ import { motion } from 'framer-motion';
 import { GraduationCap, BookOpen, Code2 } from 'lucide-react';
 import { education, coursework, technicalSkills, softSkills } from '@/data/about';
 import { handleImageError } from '@/lib/utils';
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
+import { fadeUp, revealTransition, revealViewport, staggerContainer } from '@/motion';
+import { Container } from '@/components/ui/Container';
+import { Section } from '@/components/ui/Section';
+import { SectionHeading } from '@/components/ui/SectionHeading';
 
 export const About = () => {
   return (
-    <section id="about" className="min-h-screen py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12 sm:mb-16"
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">About Me</h2>
-          <div className="w-20 h-1 bg-black dark:bg-white mx-auto"></div>
+    <Section id="about" className="min-h-screen py-16 sm:py-20 md:py-24">
+      <Container size="wide">
+        <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={revealViewport} transition={revealTransition}>
+          <SectionHeading className="mb-12 sm:mb-16">
+            About Me
+          </SectionHeading>
         </motion.div>
 
         {/* Two Column Layout */}
@@ -39,8 +23,8 @@ export const About = () => {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            viewport={revealViewport}
+            transition={revealTransition}
             className="lg:col-span-1"
           >
             <div className="sticky top-24">
@@ -71,8 +55,8 @@ export const About = () => {
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            viewport={revealViewport}
+            transition={revealTransition}
             className="lg:col-span-2 space-y-12"
           >
             {/* About Me Description */}
@@ -95,7 +79,7 @@ export const About = () => {
             </div>
 
             {/* Skills Section - Moved Here */}
-            <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+            <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={revealViewport}>
               <div className="flex items-center gap-3 mb-6">
                 <Code2 size={28} className="text-black dark:text-white" />
                 <h3 className="text-2xl font-bold">Skills</h3>
@@ -110,7 +94,7 @@ export const About = () => {
                     return (
                       <motion.div
                         key={index}
-                        variants={itemVariants}
+                        variants={fadeUp}
                         className="group bg-gray-50 dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 rounded-lg p-4 flex items-center gap-3 hover:border-black dark:hover:border-white hover:shadow-lg transition-all"
                       >
                         <IconComponent size={22} className="flex-shrink-0 transition-colors" style={{ color: skill.color }} />
@@ -128,7 +112,7 @@ export const About = () => {
                   {softSkills.map((skill, index) => (
                     <motion.div
                       key={index}
-                      variants={itemVariants}
+                      variants={fadeUp}
                       className="bg-gray-50 dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 rounded-lg p-4 flex items-center gap-3 hover:border-black dark:hover:border-white hover:shadow-lg transition-all"
                     >
                       <skill.icon size={20} className="text-black dark:text-white flex-shrink-0" />
@@ -177,7 +161,7 @@ export const About = () => {
             </div>
           </motion.div>
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 };

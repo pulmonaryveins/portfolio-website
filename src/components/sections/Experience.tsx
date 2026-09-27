@@ -1,47 +1,32 @@
 import { motion } from 'framer-motion';
 import { Briefcase, Calendar } from 'lucide-react';
 import { experiences } from '@/data/experience';
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
+import { fadeUp, revealTransition, revealViewport, staggerContainer } from '@/motion';
+import { Container } from '@/components/ui/Container';
+import { Section } from '@/components/ui/Section';
+import { SectionHeading } from '@/components/ui/SectionHeading';
 
 export const Experience = () => {
   return (
-    <section id="experience" className="min-h-screen py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-center">Experience</h2>
-          <div className="w-20 h-1 bg-black dark:bg-white mx-auto mb-12"></div>
+    <Section id="experience" className="min-h-screen py-20">
+      <Container size="content">
+        <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={revealViewport} transition={revealTransition}>
+          <SectionHeading className="mb-12">
+            Experience
+          </SectionHeading>
         </motion.div>
 
         <motion.div
-          variants={containerVariants}
+          variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={revealViewport}
           className="space-y-8"
         >
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
-              variants={itemVariants}
+              variants={fadeUp}
               className="bg-gray-50 dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 rounded-lg p-6 hover:shadow-xl hover:border-black dark:hover:border-white transition-all"
             >
               <div className="flex items-start gap-3 mb-4">
@@ -66,7 +51,7 @@ export const Experience = () => {
             </motion.div>
           ))}
         </motion.div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 };

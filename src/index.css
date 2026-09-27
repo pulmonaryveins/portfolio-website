@@ -2,10 +2,123 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Design tokens.
+ *
+ * These CSS custom properties back the semantic Tailwind color tokens
+ * declared in tailwind.config.js (`bg-surface`, `text-muted-foreground`,
+ * `border-border`, etc.), so a class like `bg-surface` automatically
+ * follows the active theme.
+ *
+ * Task 02 (Phase 1) established these as infrastructure, deliberately
+ * mirroring the site's existing literal gray, black, and white values so
+ * adopting a token was a no-visual-change swap. Task 10 (Phase 2) is where
+ * these values become the actual design decision — the global foundation
+ * primitives (Surface, Button, IconButton, Modal, body) now consume them.
+ * Component-by-component adoption elsewhere in the app remains progressive,
+ * per each section's own later redesign task — this file is the one place
+ * a future palette change would happen.
+ *
+ * The values stayed close to Task 02's originals because they already
+ * matched Phase 2's own brief (background/foreground/muted-foreground/
+ * border roles) — restrained, high-contrast, no color beyond neutral gray.
+ * Both themes are genuinely considered, not a literal white↔black
+ * inversion: dark mode's `surface`/`surface-muted`/`border` sit on
+ * Tailwind's gray-950/900/800 steps rather than pure black, so panels and
+ * dividers stay perceptible against the page background.
+ *
+ *   background            page background            white / gray-950
+ *   foreground             primary text                black / white
+ *   surface                 card/panel bg               white / gray-950 (same as background —
+ *                                                        surfaces differentiate via border, not fill,
+ *                                                        by design: no elevated-card/shadow language)
+ *   surface-muted          embedded panel / alt section bg   gray-50 / gray-900
+ *   muted                   chip/badge fill              gray-100 / gray-800
+ *   muted-foreground       secondary text                gray-600 / gray-400
+ *   border                  default border                gray-200 / gray-800
+ *   border-strong          emphasis/hover border         black / white
+ *   interactive             primary button/badge fill     black / white
+ *   interactive-foreground text on an interactive fill    white / black
+ *
+ * Contrast (checked against WCAG 2.1 AA, 4.5:1 for body text):
+ *   foreground on background:        21:1   (both themes — pure black/white extremes)
+ *   muted-foreground on background:  ~7.5:1 light, ~9:1 dark — well past AA even for secondary text
+ */
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+
+  --surface: #ffffff;
+  --surface-muted: #f9fafb; /* gray-50 */
+
+  --muted: #f3f4f6; /* gray-100 */
+  --muted-foreground: #4b5563; /* gray-600 */
+
+  --border: #e5e7eb; /* gray-200 */
+  --border-strong: #000000;
+
+  --interactive: #000000;
+  --interactive-foreground: #ffffff;
+
+  /*
+   * Radius tokens (Task 10 final values — see tailwind.config.js for the
+   * naming rationale). Deliberately small: the Phase 1 audit found the old
+   * site defaulting to Tailwind's native rounded-full/rounded-lg/
+   * rounded-2xl almost everywhere, which reads as generic/SaaS rather than
+   * the structured, editorial language Phase 2 wants.
+   */
+  --radius-sm: 0.25rem; /* 4px — buttons, badges, small controls */
+  --radius-md: 0.375rem; /* 6px — cards, panels, modals */
+  --radius-lg: 0.5rem; /* 8px — reserved for an occasional larger treatment */
+  --radius-full: 9999px; /* pills — tags/status only, not buttons/nav/containers */
+}
+
+.dark {
+  --background: #030712; /* gray-950 */
+  --foreground: #ffffff;
+
+  --surface: #030712; /* gray-950 */
+  --surface-muted: #111827; /* gray-900 */
+
+  --muted: #1f2937; /* gray-800 */
+  --muted-foreground: #9ca3af; /* gray-400 */
+
+  --border: #1f2937; /* gray-800 */
+  --border-strong: #ffffff;
+
+  --interactive: #ffffff;
+  --interactive-foreground: #000000;
+}
+
+/*
+ * Layout/container conventions (Phase 1, Task 02, item 5 — still current).
+ *
+ * Tailwind's default spacing scale already has everything needed for
+ * section padding — the audit's finding was inconsistent *choice* among
+ * existing values (py-16 vs py-20 vs py-24, max-w-4xl vs 6xl vs 7xl), not a
+ * missing token. So rather than add a parallel spacing scale, the
+ * semantic container widths live as named Tailwind maxWidth entries
+ * (`container-content`, `container-standard`, `container-wide`,
+ * `container-text` — see tailwind.config.js), and the intended
+ * section-padding convention for each section's own later redesign task is
+ * documented here:
+ *
+ *   Section horizontal padding:  px-4 sm:px-6 lg:px-8   (already the
+ *                                                        majority pattern)
+ *   Section vertical padding:    py-16 sm:py-20          (pick one pair;
+ *                                                        py-20/24 variants
+ *                                                        used elsewhere
+ *                                                        should converge to
+ *                                                        this when that
+ *                                                        section is redesigned)
+ *   Text-centric container:      max-w-container-content
+ *   Grid-heavy container:        max-w-container-wide / -standard
+ */
+
 @layer base {
   body {
-    @apply bg-white dark:bg-gray-950 text-black dark:text-white;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    @apply bg-background text-foreground;
+    font-family: theme('fontFamily.sans');
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -13,6 +126,40 @@
 
   html {
     scroll-behavior: smooth;
+  }
+
+  /* Considered selection color instead of the browser default blue —
+     inverts foreground/background, staying inside the monochrome system. */
+  ::selection {
+    background-color: var(--foreground);
+    color: var(--background);
+  }
+
+  /* Minimal, neutral scrollbar — subtle rather than a decorative element.
+     Firefox: `scrollbar-width`/`scrollbar-color`. WebKit (Chrome/Safari/Edge):
+     the `::-webkit-scrollbar*` pseudo-elements. */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--border);
+    border-radius: var(--radius-full);
+    border: 2px solid var(--background);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--border-strong);
   }
 }
 
